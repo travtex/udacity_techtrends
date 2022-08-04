@@ -1,0 +1,37 @@
+## Docker commands used to build the application 
+docker build -t techtrends -f ./Dockerfile .
+
+## Docker commands used to run the application
+docker run -d -p 7111:3111 techtrends
+
+## Docker commands used to get the application logs
+docker logs amazing_ride
+
+## Logs from the container running the TechTrends application
+| => docker logs amazing_ride
+ * Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.17.0.2:3111/ (Press CTRL+C to quit)
+INFO:werkzeug:172.17.0.1 - - [04/Aug/2022 19:47:02] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:172.17.0.1 - - [04/Aug/2022 19:47:02] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:werkzeug:172.17.0.1 - - [04/Aug/2022 19:47:05] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:172.17.0.1 - - [04/Aug/2022 19:47:05] "GET /static/css/main.css HTTP/1.1" 200 -
+INFO:werkzeug:172.17.0.1 - - [04/Aug/2022 19:47:05] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:app:08/04/2022, 19:47:06 | Post titled "2020 CNCF Annual Report" accessed.
+INFO:werkzeug:172.17.0.1 - - [04/Aug/2022 19:47:06] "GET /1 HTTP/1.1" 200 -
+INFO:werkzeug:172.17.0.1 - - [04/Aug/2022 19:47:06] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:app:08/04/2022, 19:47:08 | Post titled "KubeCon + CloudNativeCon 2021" accessed.
+INFO:werkzeug:172.17.0.1 - - [04/Aug/2022 19:47:08] "GET /2 HTTP/1.1" 200 -
+INFO:werkzeug:172.17.0.1 - - [04/Aug/2022 19:47:08] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:app:08/04/2022, 19:47:10 | Post titled "Kubernetes v1.20 Release Notes" accessed.
+INFO:werkzeug:172.17.0.1 - - [04/Aug/2022 19:47:10] "GET /3 HTTP/1.1" 200 -
+INFO:werkzeug:172.17.0.1 - - [04/Aug/2022 19:47:10] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:werkzeug:172.17.0.1 - - [04/Aug/2022 19:47:12] "GET /about HTTP/1.1" 200 -
+INFO:werkzeug:172.17.0.1 - - [04/Aug/2022 19:47:12] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:werkzeug:172.17.0.1 - - [04/Aug/2022 19:47:13] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:172.17.0.1 - - [04/Aug/2022 19:47:13] "GET /static/css/main.css HTTP/1.1" 304 -
