@@ -86,9 +86,10 @@ def healthcheck():
         connection = get_db_connection()
         connection.execute('SELECT COUNT(*) FROM posts')
         connection.close()
-        return {'result': 'OK - healthy'}
+        r = {'result': 'OK - healthy'}
     except Exception:
-        return {'result': 'ERR - not healthy'}
+        r = {'result': 'ERR - not healthy'}
+    return json.dumps(r)
 
 # Define the metrics route
 @app.route('/metrics')
@@ -97,9 +98,10 @@ def get_metrics():
         connection = get_db_connection()
         posts = connection.execute('SELECT * FROM posts').fetchall()
         connection.close()
-        return {'db_connection_count': connections_count, 'post_count': len(posts)}
+        r = {'db_connection_count': connections_count, 'post_count': len(posts)}
     except Exception:
-        return {'ERR - Metrics generation failed.'}
+        r = {'ERR - Metrics generation failed.'}
+    return json.dumps(r)
 
 # start the application on port 3111
 if __name__ == "__main__":
