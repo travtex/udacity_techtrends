@@ -38,5 +38,5 @@ template:
           path: {{ .Values.livenessProbe.path }}
           port: {{ .Values.containerPort }}
       resources:
-  {{ toYaml .Values.resources | indent 12 }}            
-
+{{ toYaml .Values.resources | indent 12 }}            
+            
