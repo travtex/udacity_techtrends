@@ -2,8 +2,8 @@ apiVersion: v1
 name: techtrends
 description: Install deployment manifests for TechTrends Project
 keywords:
-  - techtrends
+- techtrends
 version: 1.0.0
 maintainers:
-  - name: travok
-    email: tcf.webdev@gmail.com
+- name: travok
+  email: tcf.webdev@gmail.com
