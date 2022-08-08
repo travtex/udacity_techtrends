@@ -2,7 +2,6 @@ import sqlite3
 
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
 from werkzeug.exceptions import abort
-from datetime import datetime
 import logging
 
 # Count number of DB connections
@@ -25,11 +24,6 @@ def get_post(post_id):
     connection.close()
     return post
 
-# Function to log messages
-def add_log_message(m):
-    app.logger.info('{time} | {message}'.format(
-        time=datetime.now().strftime("%m/%d/%Y, %H:%M:%S"), message=m))
-
 # Define the Flask application
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your secret key'
@@ -48,10 +42,10 @@ def index():
 def post(post_id):
     post = get_post(post_id)
     if post is None:
-      add_log_message('Post with ID "{id}" not found.'.format(id=post_id))
+      app.logger.error('Post with ID "{id}" not found.'.format(id=post_id))
       return render_template('404.html'), 404
     else:
-      add_log_message('Post titled "{post_title}" accessed.'.format(post_title=post['title']))
+      app.logger.info('Post titled "{post_title}" accessed.'.format(post_title=post['title']))
       return render_template('post.html', post=post)
 
 # Define the About Us page
@@ -105,5 +99,9 @@ def get_metrics():
 
 # start the application on port 3111
 if __name__ == "__main__":
-   logging.basicConfig(level=logging.DEBUG)
-   app.run(host='0.0.0.0', port='3111')
+    logging.basicConfig(
+        format='%(asctime)s %(levelname)-8s %(message)s',
+        level=logging.DEBUG,
+        datefmt='%m/%d/%Y, %H:%M:%S'
+    )
+    app.run(host='0.0.0.0', port='3111')
